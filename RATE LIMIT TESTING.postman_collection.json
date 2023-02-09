@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "163ba25a-42ad-47d4-91af-a7352dfb622d",
+		"name": "RATE LIMIT TESTING",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5040522"
+	},
+	"item": [
+		{
+			"name": "LOGIN API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "westcoastrailways.co.uk"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "cookie",
+						"value": "_ga=GA1.3.623398622.1671674046; _fbp=fb.2.1671674046639.864169445; west_coast_railways_session=Y5YMIJ4Ch6rkvufpm9AwhE1l2i8Afm0h0ChmB6Sd; _gid=GA1.3.1735552778.1675352879; XSRF-TOKEN=eyJpdiI6Im9VVHhqNmhyKzBDOCt1cjBNdWxHa1E9PSIsInZhbHVlIjoiSkk1VklZcDRpRmRTVjBYNVlSTU5QT01nT29rTXUxYm9YTmJxZXZBclQ4T1lXQ29GejgvaHl2NlYyM0tFaTRxU2hNM1o1V2NwSkl3Q2V1OCtSdWNsNHJZdy9MNXpSN3IyMlMvbkNpY3RMVi92OGc5RjJ0SXArV2ROWU9xeVM1ZDAiLCJtYWMiOiI3YjRmYjg5YjdmMmFmZmJkZTk1MWVjN2IxMWMyM2JmZWU4NDk0YmNjNWM3NjA1ZTI4M2RjNzljNjc0OGU0YjY1IiwidGFnIjoiIn0%3D"
+					},
+					{
+						"key": "origin",
+						"value": "https://westcoastrailways.co.uk"
+					},
+					{
+						"key": "referer",
+						"value": "https://westcoastrailways.co.uk/login"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_token",
+							"value": "E2dLjupBbkmh3Jgha5uOjxnwdLv0027Azl8I9Nh7",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "tiger@lion.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "tiger",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://westcoastrailways.co.uk/login",
+					"protocol": "https",
+					"host": [
+						"westcoastrailways",
+						"co",
+						"uk"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

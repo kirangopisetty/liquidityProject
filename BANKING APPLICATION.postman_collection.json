@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "00409637-8756-441c-ae2f-4340d7fbfc45",
+		"name": "BANKING APPLICATION",
+		"description": "Goat by Pynt is a vulnerable application example, used to demonstrate the most critical and common API security risks.\n\nFork Goat to your workspace and provide it as a variable to Pynt collection to detect its vulnerabilities.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5040522"
+	},
+	"item": [
+		{
+			"name": "1st user login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify if response body contains mandatory strings\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"token\");",
+							"    pm.expect(pm.response.text()).to.include(\"type\");",
+							"    pm.expect(pm.response.text()).to.include(\"Bearer\");",
+							"});",
+							"",
+							"myExtractedBody = JSON.parse(responseBody);",
+							"myExtractedToken = myExtractedBody.token;",
+							"pm.globals.set(\"globalToken\", myExtractedToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"James\",\n    \"password\": \"ILoveGuitars\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://44.202.3.35:6000/login",
+					"protocol": "http",
+					"host": [
+						"44",
+						"202",
+						"3",
+						"35"
+					],
+					"port": "6000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1st user account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify if response body contains mandatory strings\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"address\");",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\");",
+							"    pm.expect(pm.response.text()).to.include(\"lastName\");",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");",
+							"});",
+							"",
+							"myExtractedBody = JSON.parse(responseBody);",
+							"myUserID = myExtractedBody.userId;",
+							"pm.globals.set(\"globalUserID\", myUserID);",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{globalToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://44.202.3.35:6000/account",
+					"protocol": "http",
+					"host": [
+						"44",
+						"202",
+						"3",
+						"35"
+					],
+					"port": "6000",
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1st user transactions 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify if response body contains mandatory strings\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"_id\");",
+							"    pm.expect(pm.response.text()).to.include(\"$oid\");",
+							"    pm.expect(pm.response.text()).to.include(\"amount\");",
+							"    pm.expect(pm.response.text()).to.include(\"to\");",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");",
+							"});",
+							"",
+							"pm.test(\"Verify if the JSON[] is 5\", function () {",
+							"    pm.response.json().length=5;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{globalToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://44.202.3.35:6000/transactions?limit=5&userId={{globalUserID}}",
+					"protocol": "http",
+					"host": [
+						"44",
+						"202",
+						"3",
+						"35"
+					],
+					"port": "6000",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "userId",
+							"value": "{{globalUserID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1st user transactions 10",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify if response body contains mandatory strings\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"_id\");",
+							"    pm.expect(pm.response.text()).to.include(\"$oid\");",
+							"    pm.expect(pm.response.text()).to.include(\"amount\");",
+							"    pm.expect(pm.response.text()).to.include(\"to\");",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");",
+							"});",
+							"",
+							"pm.test(\"Verify if the JSON[] is 15\", function () {",
+							"    pm.response.json().length=15;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{globalToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://44.202.3.35:6000/transactions?limit=10&userId={{globalUserID}}",
+					"protocol": "http",
+					"host": [
+						"44",
+						"202",
+						"3",
+						"35"
+					],
+					"port": "6000",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "userId",
+							"value": "{{globalUserID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Verify if the status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Verify if the status code name is OK\", function () {",
+					"    pm.response.to.have.status(\"OK\");",
+					"});",
+					"",
+					"pm.test(\"Verify if Content-Type=application/json\", function () {",
+					"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://44.202.3.35:6000",
+			"type": "string"
+		}
+	]
+}

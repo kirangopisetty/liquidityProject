@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "d79a4c65-e2de-4dcf-bf7f-5df9720a4ef4",
+		"name": "CALC-SOAP APIs-MONITORS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5040522"
+	},
+	"item": [
+		{
+			"name": "DATA DRIVEN TESTING-CSV",
+			"item": [
+				{
+					"name": "ADDITION API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate if response code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response description is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if content-type = text/xml; charset=utf-8\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/xml; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response body received contains mandatory fields\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"soap\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"AddResponse\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"AddResult\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response time < 1 second (1000ms)\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [Server] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-AspNet-Version] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-AspNet-Version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By-Plesk] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By-Plesk\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Add xmlns=\"http://tempuri.org/\">\r\n      <intA>{{myVarA}}</intA>\r\n      <intB>{{myVarB}}</intB>\r\n    </Add>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "www.dneonline.com/calculator.asmx",
+							"host": [
+								"www",
+								"dneonline",
+								"com"
+							],
+							"path": [
+								"calculator.asmx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SUBTRACTION API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate if response code = 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response description = OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if content-type = text/xml; charset=utf-8\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/xml; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response body received contains mandatory fields\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"soap\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"SubtractResponse\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"SubtractResult\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response time < 1 second (1000ms)\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [Server] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-AspNet-Version] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-AspNet-Version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By-Plesk] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By-Plesk\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Subtract xmlns=\"http://tempuri.org/\">\r\n      <intA>{{myVarA}}</intA>\r\n      <intB>{{myVarB}}</intB>\r\n    </Subtract>\r\n  </soap:Body>\r\n</soap:Envelope>"
+						},
+						"url": {
+							"raw": "www.dneonline.com/calculator.asmx",
+							"host": [
+								"www",
+								"dneonline",
+								"com"
+							],
+							"path": [
+								"calculator.asmx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MULTIPLY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response body received contains mandatory fields \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"soap\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"MultiplyResponse\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"MultiplyResult\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response time < 1 second (1000ms)\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [Server] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-AspNet-Version] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-AspNet-Version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By-Plesk] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By-Plesk\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Multiply xmlns=\"http://tempuri.org/\">\r\n      <intA>{{myVarA}}</intA>\r\n      <intB>{{myVarB}}</intB>\r\n    </Multiply>\r\n  </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "www.dneonline.com/calculator.asmx",
+							"host": [
+								"www",
+								"dneonline",
+								"com"
+							],
+							"path": [
+								"calculator.asmx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DIVISION API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate if response code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response status is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if Content-type in response header is of ttext/xml; charset=utf-8\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\",\"text/xml; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response body contains SOAP,Divide result and Divide response \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"soap\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"DivideResponse\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"DivideResult\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate if response time < 1 second (1000ms)\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [Server] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"Server\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-AspNet-Version] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-AspNet-Version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response header [X-Powered-By-Plesk] should not be listed\", function () {\r",
+									"    pm.response.to.not.have.header(\"X-Powered-By-Plesk\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Divide xmlns=\"http://tempuri.org/\">\r\n      <intA>{{myVarA}}</intA>\r\n      <intB>{{myVarB}}</intB>\r\n    </Divide>\r\n  </soap:Body>\r\n</soap:Envelope>"
+						},
+						"url": {
+							"raw": "www.dneonline.com/calculator.asmx",
+							"host": [
+								"www",
+								"dneonline",
+								"com"
+							],
+							"path": [
+								"calculator.asmx"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
